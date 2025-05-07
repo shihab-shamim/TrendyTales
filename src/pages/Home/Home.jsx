@@ -2,8 +2,8 @@
 
 const Home = () => {
     return (
-        <div className="text-red-800">
-            This is home
+        <div className="">
+           <h1 className=" dark:text-red-500"> This is home</h1>
             
         </div>
     );
