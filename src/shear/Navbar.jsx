@@ -30,7 +30,7 @@ const Navbar = () => {
   
 
   return (
-    <nav className="bg-white py-4 relative z-50">
+    <nav className="bg-white dark:bg-gray-800 py-4 relative z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -90,12 +90,7 @@ const Navbar = () => {
               </div>
 
               {/* Overlay */}
-              {isShopOpen && (
-                <div
-                  className="fixed inset-0 bg-black bg-opacity-40 z-40"
-                  onClick={() => setIsShopOpen(false)}
-                ></div>
-              )}
+              
             </div>
             <a href="#" className="hover:text-gray-600">On Sale</a>
             <a href="#" className="hover:text-gray-600">New Arrivals</a>
@@ -134,7 +129,7 @@ const Navbar = () => {
               <input
                 type="text"
                 placeholder="Search for products..."
-                className="w-[300px] pl-10 pr-4 py-2 bg-gray-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-gray-200"
+                className="w-[300px] pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-gray-200"
               />
             </div>
 
@@ -175,7 +170,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`lg:hidden fixed inset-y-0 right-0 w-[300px] max-w-sm bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`lg:hidden fixed inset-y-0 right-0 w-[300px] max-w-sm bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="h-full overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-8">
@@ -196,7 +191,7 @@ const Navbar = () => {
                   <input
                     type="text"
                     placeholder="Search for products..."
-                    className="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    className="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-gray-200"
                   />
                 </div>
               </div>
@@ -227,7 +222,7 @@ const Navbar = () => {
                             <a
                               key={subIndex}
                               href="#"
-                              className="block text-gray-600 hover:text-black"
+                              className="block text-gray-600 dark:text-white hover:text-black"
                             >
                               {sub}
                             </a>
@@ -243,10 +238,10 @@ const Navbar = () => {
                 <a href="#" className="block text-lg py-2">Brands</a>
 
                 <div className="pt-6 space-y-4">
-                  <button className="w-full py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors">
+                  <button className="w-full py-3 bg-black dark:bg-amber-50 text-white dark:text-black rounded-full transition-colors">
                     Sign In
                   </button>
-                  <button className="w-full py-3 border border-black rounded-full hover:bg-gray-100 transition-colors">
+                  <button className="w-full py-3 border border-black rounded-full transition-colors">
                     Create Account
                   </button>
                 </div>
