@@ -6,7 +6,7 @@ import CountUp from 'react-countup';
 const Banner = () => {
     return (
         <div className=" ">
-        <section className=" w-full overflow-hidden bg-[#f8f9fa] border-b border-gray-200">
+        <section className=" w-full overflow-hidden bg-[#f8f9fa] dark:bg-gray-800 border-b border-gray-200">
           <div className="container  max-w-7xl px-4 py-12 md:py-16 lg:py-20">
             <div className="flex flex-col lg:flex-row items-start justify-between">
               {/* Left side content */}
@@ -15,7 +15,7 @@ const Banner = () => {
                   <h1 className=" text-2xl lg:text-5xl font-black tracking-tight leading-tight mb-6">
                     FIND CLOTHES THAT MATCHES YOUR STYLE
                   </h1>
-                  <p className="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">
+                  <p className="text-sm md:text-base text-gray-600 dark:text-white mb-6 leading-relaxed">
                     Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.
                   </p>
                   <button 

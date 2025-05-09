@@ -50,7 +50,7 @@ const FooterLinks = () => {
                 <li key={linkIndex}>
                   <a 
                     href={link.url} 
-                    className="text-gray-600 hover:text-black transition-colors duration-200 text-sm"
+                    className="text-gray-600 hover:text-black dark:hover:text-white transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>

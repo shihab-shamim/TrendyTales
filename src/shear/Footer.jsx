@@ -7,7 +7,7 @@ import { ShoppingBag } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-50">
+        <footer className="bg-gray-50 dark:bg-gray-800 dark:text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           {/* Newsletter Section */}
           <NewsletterSection />
@@ -18,7 +18,7 @@ const Footer = () => {
               <div className="max-w-xs">
                 <div className="mb-4">
                   <h2 className="text-2xl font-bold inline-flex items-center">
-                    <ShoppingBag className="mr-2" /> SHOP.CO
+                    <ShoppingBag className="mr-2" /> TrendyTales
                   </h2>
                 </div>
                 <p className="text-gray-600 text-sm mb-6">
