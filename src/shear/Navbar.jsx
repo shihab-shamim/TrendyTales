@@ -56,8 +56,8 @@ const Navbar = () => {
               </button>
 
               {/* Shop Drawer (right-side, width-limited) */}
-              <div className={`fixed top-0 right-0 h-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50
-                ${isShopOpen ? 'translate-x-0' : 'translate-x-full'} w-[340px] max-w-full`}
+              <div className={`fixed top-0 right-0 h-full bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out z-50
+                ${isShopOpen ? 'translate-x-0' : 'translate-x-full'} w-[340px] max-w-full `}
               >
                 <div className="p-6 h-full overflow-y-auto">
                   <div className="flex justify-between items-center mb-6">
@@ -72,14 +72,14 @@ const Navbar = () => {
                     </button>
                   </div>
                   {shopCategories.map((category, index) => (
-                    <div key={index} className="mb-6">
+                    <div key={index} className="mb-6 " >
                       <h4 className="font-medium mb-2">{category.name}</h4>
                       <div className="space-y-2">
                         {category.subcategories.map((sub, subIndex) => (
                           <a
                             key={subIndex}
                             href="#"
-                            className="block text-gray-600 hover:text-black pl-2"
+                            className="block text-gray-600 dark:text-white hover:text-black pl-2"
                           >
                             {sub}
                           </a>
@@ -238,13 +238,13 @@ const Navbar = () => {
                 <a href="#" className="block text-lg py-2">New Arrivals</a>
                 <a href="#" className="block text-lg py-2">Brands</a>
 
-                <div className="pt-6 space-y-4">
-                  <button className="w-full py-3 bg-black dark:bg-amber-50 text-white dark:text-black rounded-full transition-colors">
+                <div className="pt-6 space-y-4 flex flex-col" >
+                  <Links to="/signin" className="w-full py-3 text-center bg-black dark:bg-amber-50 text-white dark:text-black rounded-full transition-colors">
                     Sign In
-                  </button>
-                  <button className="w-full py-3 border border-black rounded-full transition-colors">
+                  </Links>
+                  <Links to="/signup"  className="w-full text-center py-3 border border-black rounded-full transition-colors">
                     Create Account
-                  </button>
+                  </Links>
                 </div>
               </div>
             </div>
