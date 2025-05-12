@@ -20,14 +20,19 @@ const SignIn = () => {
     const email=data.email;
     const password=data.password;
     const photo=data.photo;
-    const userInfo={
-      name,email,password,role:"user"
+    try {
+      const formData = new FormData();
+      formData.append("image", data.photo[0]);
+      fetch(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMAGE_API_KEY}`,{
+         method: "POST",
+    body: formData,
+      })
+       .then(res => res.json())
+    .then(async(result )=> {
+      if( result.data.url){
+        const userInfo={
+      name,email,password,role:"user",image:result.data.url
     }
-    // if(photo){
-    //    const formData = new FormData();
-    //     formData.append("photo", photo[0]);
-
-    // }
     try {
       const {user}=await createUser(email,password)
       if(user){
@@ -42,9 +47,25 @@ const SignIn = () => {
       
     }
 
+      }
+    })
+      
+    } catch (error) {
+      console.log(error);
+    }
+    
+    // if(photo){
+    //    const formData = new FormData();
+    //     formData.append("photo", photo[0]);
+
+    // }
+    
+
 
     
   };
+
+ 
  
 
   return (
