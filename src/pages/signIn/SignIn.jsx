@@ -1,9 +1,14 @@
 import { Link } from "react-router";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import useUserPost from "../../hooks/useUserPost";
+import useAxiosPublic from "../../axios/useAxiosPublic";
 
 const SignIn = () => {
   const {createUser}=useAuth()
+  const userPost=useUserPost()
+  const axiosPublic=useAxiosPublic()
+ 
   const {
     register,
     handleSubmit,
@@ -15,6 +20,9 @@ const SignIn = () => {
     const email=data.email;
     const password=data.password;
     const photo=data.photo;
+    const userInfo={
+      name,email,password,role:"user"
+    }
     // if(photo){
     //    const formData = new FormData();
     //     formData.append("photo", photo[0]);
@@ -22,9 +30,12 @@ const SignIn = () => {
     // }
     try {
       const {user}=await createUser(email,password)
-      // if(user){
-
-      // }
+      if(user){
+       await userPost.mutate(userInfo)
+        
+     
+        
+      }
       
     } catch (error) {
       console.log(error);
