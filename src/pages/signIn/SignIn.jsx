@@ -1,14 +1,16 @@
 import { Link } from "react-router";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 
 const SignIn = () => {
+  const {createUser}=useAuth()
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) =>{
+  const onSubmit =async (data) =>{
     const name=data.name;
     const email=data.email;
     const password=data.password;
@@ -18,7 +20,18 @@ const SignIn = () => {
     //     formData.append("photo", photo[0]);
 
     // }
-    
+    try {
+      const {user}=await createUser(email,password)
+      // if(user){
+
+      // }
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+
+
     
   };
  
