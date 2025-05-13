@@ -1,18 +1,18 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import useUserPost from "../../hooks/useUserPost";
-import useAxiosPublic from "../../axios/useAxiosPublic";
 
 const SignIn = () => {
+  const navigate=useNavigate()
   const {createUser}=useAuth()
   const userPost=useUserPost()
-  const axiosPublic=useAxiosPublic()
+ 
  
   const {
     register,
     handleSubmit,
-    watch,
+
     formState: { errors },
   } = useForm();
   const onSubmit =async (data) =>{
@@ -22,7 +22,7 @@ const SignIn = () => {
     const photo=data.photo;
     try {
       const formData = new FormData();
-      formData.append("image", data.photo[0]);
+      formData.append("image", photo[0]);
       fetch(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMAGE_API_KEY}`,{
          method: "POST",
     body: formData,
@@ -37,7 +37,7 @@ const SignIn = () => {
       const {user}=await createUser(email,password)
       if(user){
        await userPost.mutate(userInfo)
-        
+        navigate("/")
      
         
       }
