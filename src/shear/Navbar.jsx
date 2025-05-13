@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Search, ShoppingCart, User } from 'lucide-react';
 import { Link as Links } from 'react-router';
+import useAuth from "../hooks/useAuth"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [theme,setTheme]=useState(localStorage.getItem("mode") || "light")
+  const {user}=useAuth()
+  console.log(user);
 
   const shopCategories = [
     { name: "Men's Fashion", subcategories: ['T-Shirts', 'Shirts', 'Pants', 'Jackets'] },
@@ -149,8 +152,14 @@ const Navbar = () => {
                 <User className="w-6 h-6" />
                 <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800  shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   <div className="py-2">
+
+                    {user?<><button className="block cursor-pointer px-4 py-2 text-sm text-gray-700 dark:text-white ">LogOut</button>
+                 
+                    <button className="block cursor-pointer px-4 py-2 text-sm text-gray-700 dark:text-white ">Dashboard</button></>:<>
                     <Links to='/signin'  className="block px-4 py-2 text-sm text-gray-700 dark:text-white ">Sign In</Links>
                     <Links to="/signup"  className="block px-4 py-2 text-sm text-gray-700 dark:text-white ">Create Account</Links>
+                    </>}
+
                   </div>
                 </div>
               </button>
