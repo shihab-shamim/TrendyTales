@@ -1,7 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router'; // Make sure you're using `react-router-dom`
+import { useForm } from "react-hook-form";
+import { Link, Navigate, useLocation, useNavigate } from 'react-router'; 
+import useAuth from '../../hooks/useAuth';
 
 const LogIn = () => {
+  const {logIn,user}=useAuth()
+   if (user) {
+    return <Navigate to="/" replace />;
+  }
+  const location=useLocation()
+  const navigate=useNavigate()
+  const form="/"
+  const {
+    register,
+    handleSubmit,
+
+    formState: { errors },
+  } = useForm();
+
+
+  const onSubmit =async(data)=>{
+    const email=data?.email;
+    const password=data?.password;
+    try{
+      const {user}=await logIn(email,password)
+      console.log(user);
+      if(user){
+        navigate(form)
+      }
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-800 px-4">
       <div className="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
@@ -17,7 +47,7 @@ const LogIn = () => {
           </p>
         </div>
 
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Email */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium dark:text-white text-gray-700">
@@ -26,11 +56,12 @@ const LogIn = () => {
             <input
               id="email"
               name="email"
+              {...register("email", { required: true })}
               type="email"
-              required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
               placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
+            {errors.email && <span>This field is required</span>}
           </div>
 
           {/* Password */}
@@ -40,12 +71,13 @@ const LogIn = () => {
             </label>
             <input
               id="password"
+              {...register("password", { required: true })}
               name="password"
               type="password"
-              required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
               placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
+            {errors.password && <span>This field is required</span>}
           </div>
 
           {/* Remember Me and Forgot Password */}

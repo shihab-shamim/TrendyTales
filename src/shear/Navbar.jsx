@@ -197,17 +197,15 @@ const Navbar = () => {
                 <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800  shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   {/* <div className="py-2"> */}
 
-                  {user ? (
-                    <div className="py-2">
-                      <button onClick={()=>handleLogOut()} className="block cursor-pointer px-4 py-2 text-sm text-gray-700 dark:text-white ">
+                  {user ?  <div className="py-2">
+                      <Links onClick={()=>handleLogOut()} className="block cursor-pointer px-4 py-2 text-sm text-gray-700 dark:text-white ">
                         LogOut
-                      </button>
-
-                      <button className="block cursor-pointer px-4 py-2 text-sm text-gray-700 dark:text-white ">
+                      </Links>
+                      <Links className="block cursor-pointer px-4 py-2 text-sm text-gray-700 dark:text-white ">
                         Dashboard
-                      </button>
+                      </Links>
                     </div>
-                  ) : (
+                  : 
                     <div className="py-2">
                       <Links
                         to="/signin"
@@ -222,7 +220,7 @@ const Navbar = () => {
                         Create Account
                       </Links>
                     </div>
-                  )}
+                  }
 
                   {/* </div> */}
                 </div>
@@ -352,7 +350,20 @@ const Navbar = () => {
                 </a>
 
                 <div className="pt-6 space-y-4 flex flex-col">
-                  <Links
+                  {user?<><button
+                  onClick={()=>handleLogOut()}
+                    
+                    className="w-full py-3 text-center bg-black dark:bg-amber-50 text-white dark:text-black rounded-full transition-colors"
+                  >
+                    Log Out
+                  </button>
+                  <Links to="/dashboard"
+                    
+                   className="w-full text-center py-3 border border-black rounded-full transition-colors"
+                  >
+                    DashBoard
+                  </Links>
+                  </>:<><Links
                     to="/signin"
                     className="w-full py-3 text-center bg-black dark:bg-amber-50 text-white dark:text-black rounded-full transition-colors"
                   >
@@ -363,7 +374,7 @@ const Navbar = () => {
                     className="w-full text-center py-3 border border-black rounded-full transition-colors"
                   >
                     Create Account
-                  </Links>
+                  </Links></>}
                 </div>
               </div>
             </div>
