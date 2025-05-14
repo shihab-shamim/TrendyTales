@@ -20,21 +20,12 @@ const SignIn = () => {
     const email=data.email;
     const password=data.password;
     const photo=data.photo;
-    try {
-      const formData = new FormData();
-      formData.append("image", photo[0]);
-      fetch(`https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_IMAGE_API_KEY}`,{
-         method: "POST",
-    body: formData,
-      })
-       .then(res => res.json())
-    .then(async(result )=> {
-      if( result.data.url){
-        const userInfo={
-      name,email,password,role:"user",image:result.data.url
+   const userInfo={
+      name,email,password,role:"user",image:photo
     }
     try {
-      const {user}=await createUser(email,password)
+      const user=await createUser(email,password)
+      console.log(user);
       if(user){
        await userPost.mutate(userInfo)
         navigate("/")
@@ -45,22 +36,8 @@ const SignIn = () => {
     } catch (error) {
       console.log(error);
       
-    }
-
-      }
-    })
       
-    } catch (error) {
-      console.log(error);
     }
-    
-    // if(photo){
-    //    const formData = new FormData();
-    //     formData.append("photo", photo[0]);
-
-    // }
-    
-
 
     
   };
@@ -164,7 +141,7 @@ const SignIn = () => {
               {...register("photo", { required: true })}
               id="photo"
               name="photo"
-              type="file"
+              type="text"
               accept="image/*"
               className="mt-1 block w-full text-sm text-gray-700 dark:text-white file:mr-4 file:py-2 file:px-4
               file:rounded-md file:border-0 file:text-sm file:font-semibold
