@@ -4,49 +4,43 @@ import useAuth from "../../hooks/useAuth";
 import useUserPost from "../../hooks/useUserPost";
 
 const SignIn = () => {
-  const navigate=useNavigate()
-  const {createUser,user}=useAuth()
-  const userPost=useUserPost()
-   if (user) {
-    return <Navigate to="/" replace />;
-  }
- 
- 
+  const navigate = useNavigate();
+  const { createUser, user } = useAuth();
+  const userPost = useUserPost();
+  
   const {
     register,
     handleSubmit,
 
     formState: { errors },
   } = useForm();
-  const onSubmit =async (data) =>{
-    const name=data.name;
-    const email=data.email;
-    const password=data.password;
-    const photo=data.photo;
-   const userInfo={
-      name,email,password,role:"user",image:photo
-    }
+  const onSubmit = async (data) => {
+    const name = data.name;
+    const email = data.email;
+    const password = data.password;
+    const photo = data.photo;
+    const userInfo = {
+      name,
+      email,
+      password,
+      role: "user",
+      image: photo,
+    };
     try {
-      const user=await createUser(email,password)
+      const user = await createUser(email, password);
       console.log(user);
-      if(user){
-       await userPost.mutate(userInfo)
-        navigate("/")
-     
-        
+      if (user) {
+        await userPost.mutate(userInfo);
+        navigate("/");
       }
-      
     } catch (error) {
       console.log(error);
-      
-      
     }
-
-    
   };
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
 
- 
- 
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-800  px-4">
@@ -145,8 +139,7 @@ const SignIn = () => {
               id="photo"
               name="photo"
               type="text"
-             
-             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
               placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
             {errors.photo && <span>This field is required</span>}

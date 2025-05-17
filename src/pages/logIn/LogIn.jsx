@@ -4,9 +4,7 @@ import useAuth from '../../hooks/useAuth';
 
 const LogIn = () => {
   const {logIn,user}=useAuth()
-   if (user) {
-    return <Navigate to="/" replace />;
-  }
+  
   const location=useLocation()
   const navigate=useNavigate()
   const form="/"
@@ -31,6 +29,9 @@ const LogIn = () => {
     catch(error){
       console.log(error);
     }
+  }
+   if (user) {
+    return <Navigate to="/" replace />;
   }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-800 px-4">
