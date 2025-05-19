@@ -6,6 +6,7 @@ import LogIn from "../pages/logIn/LogIn";
 import ErrorPage from "../pages/error/ErrorPage ";
 import TestPrivate from "../pages/TestPrivate";
 import Private from "../private/Private";
+import Dashboard from "../layout/Dashboard";
 
 
 
@@ -32,7 +33,10 @@ const router = createBrowserRouter([
           element:<Private><TestPrivate/></Private>
         }
       ]
-    },
+    },{
+      path:"/dashboard",
+      element:<Private><Dashboard/></Private>
+    }
   ]);
 
 
