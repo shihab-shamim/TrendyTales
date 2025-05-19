@@ -6,8 +6,10 @@ const LogIn = () => {
   const {logIn,user}=useAuth()
   
   const location=useLocation()
+
   const navigate=useNavigate()
-  const form="/"
+ const from= location.state?.from?.pathname 
+  
   const {
     register,
     handleSubmit,
@@ -21,18 +23,18 @@ const LogIn = () => {
     const password=data?.password;
     try{
       const {user}=await logIn(email,password)
-      console.log(user);
+      // console.log(user);
       if(user){
-        navigate(form)
+        navigate(from);
       }
     }
     catch(error){
-      console.log(error);
+      // console.log(error);
     }
   }
-   if (user) {
-    return <Navigate to="/" replace />;
-  }
+  //  if (user) {
+  //   return <Navigate to="/" replace />;
+  // }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-800 px-4">
       <div className="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">

@@ -13,7 +13,7 @@ const Private = ({children}) => {
         return children
     }
     
-    return <Navigate state={{ form: location?.pathname }} replace  />
+    return <Navigate to='/signin' state={{ from: location }}  />
 };
 
 export default Private;

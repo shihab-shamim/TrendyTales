@@ -12,7 +12,7 @@ const Navbar = () => {
   const handleLogOut=()=>{
     logOut()
     .then(res =>{
-      console.log(res);
+      // console.log(res);
     })
   }
 
@@ -131,9 +131,9 @@ const Navbar = () => {
             <a href="#" className="hover:text-gray-600">
               On Sale
             </a>
-            <a href="#" className="hover:text-gray-600">
+            <Links to='/private' className="hover:text-gray-600">
               New Arrivals
-            </a>
+            </Links>
             <a href="#" className="hover:text-gray-600">
               Brands
             </a>
