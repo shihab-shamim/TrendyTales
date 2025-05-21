@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X, ShoppingCart, Package, User, Star } from "lucide-react";
 import { Link } from "react-router";
 
-export default function UserDashboard() {
+export default function UserNav() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -17,10 +17,10 @@ export default function UserDashboard() {
   ];
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex w-full">
       {/* Sidebar */}
       <div
-        className={`fixed z-40 md:relative top-0 left-0 h-full w-64 bg-white shadow-lg transition-transform duration-300 ease-in-out ${
+        className={`fixed z-40 md:relative top-0 left-0 min-h-screen w-64 bg-white shadow-lg transition-transform duration-300 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:block`}
       >
@@ -49,7 +49,9 @@ export default function UserDashboard() {
       )}
 
       {/* Main content */}
-     {sidebarOpen ? <X size={28} onClick={toggleSidebar} /> : <Menu onClick={toggleSidebar} size={28} />}
+     <div className= " flex md:hidden">
+        {sidebarOpen ? <X size={28} onClick={toggleSidebar} /> : <Menu onClick={toggleSidebar} size={28} />}
+     </div>
     </div>
   );
 }
